@@ -13,9 +13,9 @@ font-family:Arial;
 color:white;
 text-align:center;
 
-/* BACKGROUND GAMBAR */
+/* BACKGROUND MATCHA */
 background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url("https://images.unsplash.com/photo-1515823662972-da6a2e4d3002");
+url("https://images.unsplash.com/photo-1556679343-c7306c1976bc");
 
 background-size:cover;
 background-position:center;
@@ -27,7 +27,12 @@ padding:100px 20px;
 }
 
 .hero h1{
-font-size:45px;
+font-size:50px;
+letter-spacing:2px;
+}
+
+.hero p{
+font-size:18px;
 }
 
 .btn{
@@ -37,6 +42,11 @@ padding:15px 25px;
 border-radius:30px;
 text-decoration:none;
 font-weight:bold;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
 }
 
 .wa{
@@ -65,24 +75,41 @@ padding-bottom:80px;
 }
 
 .area h2{
-margin-bottom:20px;
+font-size:32px;
+margin-bottom:30px;
 }
+
+/* MENU CARD */
 
 .menu-area{
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
-gap:20px;
+gap:25px;
 }
 
 .card{
 background:white;
 color:black;
-padding:20px;
 border-radius:15px;
-width:160px;
-font-weight:bold;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
+width:200px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:140px;
+object-fit:cover;
+}
+
+.card h3{
+margin:10px;
 }
 
 </style>
@@ -104,6 +131,57 @@ Pesan via WhatsApp
 
 <a class="btn gofood"
 href="https://gofood.link/yourstore">
+Pesan via GoFood
+</a>
+
+</div>
+
+<!-- MENU AREA -->
+
+<div class="area">
+
+<h2>Menu Favorit</h2>
+
+<div class="menu-area">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002">
+<h3>Matcha Latte</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1541599188778-cdc73298e8f7">
+<h3>Matcha Ice Cream</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908176997-4310f1c3b4d5">
+<h3>Matcha Dessert</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef">
+<h3>Premium Matcha Powder</h3>
+</div>
+
+</div>
+
+<br><br>
+
+<a class="btn menu"
+href="menu.html">
+Lihat Menu
+</a>
+
+<a class="btn rating"
+href="login.html">
+Beri Rating
+</a>
+
+</div>
+
+</body>
+</html>href="https://gofood.link/yourstore">
 Pesan via GoFood
 </a>
 

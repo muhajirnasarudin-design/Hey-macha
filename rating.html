@@ -3,107 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rating - Hey Matcha</title>
-
+<title>Beri Rating - Hey Matcha</title>
 <style>
-body {
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#0f5f3c;
-    color:white;
-    text-align:center;
-}
-
-.container {
-    max-width: 400px;
-    margin: 80px auto;
-    background: rgba(255,255,255,0.1);
-    padding: 30px;
-    border-radius: 15px;
-}
-
-h2 {
-    margin-bottom: 20px;
-}
-
-label {
-    display:block;
-    margin: 10px 0 5px;
-}
-
-textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    resize: none;
-}
-
-select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.btn {
-    width: 100%;
-    padding: 12px;
-    border-radius: 30px;
-    border:none;
-    background:#25D366;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.btn:hover {
-    background:#1ebe5a;
-}
-
-a.home {
-    display:block;
-    margin-top:15px;
-    color:#f1fa8c;
-    text-decoration:none;
-}
+body {margin:0; font-family:Arial; background:#0f5f3c; color:white; text-align:center;}
+.container {max-width:400px; margin:100px auto; background:rgba(255,255,255,0.1); padding:30px; border-radius:15px;}
+input, textarea {width:100%; padding:12px; margin:10px 0; border-radius:10px; border:none;}
+textarea {height:80px;}
+.btn {width:100%; padding:12px; border-radius:30px; border:none; background:#25D366; color:white; font-weight:bold; cursor:pointer; transition:0.3s;}
+.btn:hover {background:#1ebe5a;}
+a.home {display:block; margin-top:15px; color:#f1fa8c; text-decoration:none;}
 </style>
 </head>
-
 <body>
-
 <div class="container">
-    <h2>Berikan Rating</h2>
-
-    <label for="bintang">Pilih Bintang</label>
-    <select id="bintang">
-        <option value="">-- Pilih Rating --</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-    </select>
-
-    <label for="komentar">Komentar</label>
-    <textarea id="komentar" rows="4" placeholder="Tulis komentar Anda..."></textarea>
-
-    <button class="btn" onclick="submitRating()">Submit Rating</button>
-
-    <a class="home" href="index.html">🏠 Kembali ke Beranda</a>
+<h2>Beri Rating</h2>
+<input type="number" id="bintang" min="1" max="5" placeholder="Bintang 1-5">
+<textarea id="komentar" placeholder="Tulis komentar Anda"></textarea>
+<button class="btn" onclick="submitRating()">Kirim Rating</button>
+<a class="home" href="index.html">🏠 Kembali ke Beranda</a>
 </div>
 
 <script>
-function submitRating() {
-    const bintang = document.getElementById("bintang").value;
-    const komentar = document.getElementById("komentar").value.trim();
+const currentUser = localStorage.getItem("currentUser");
+if(!currentUser){ alert("Silakan login terlebih dahulu"); window.location.href="login.html"; }
 
-    if(!bintang) {
-        alert("Silakan pilih bintang rating");
-        return;
+function submitRating(){
+    const bintang=document.getElementById("bintang").value;
+    const komentar=document.getElementById("komentar").value.trim();
+    if(!bintang||!komentar){ alert("Isi semua field"); return; }
+
+    let ratings=JSON.parse(localStorage.getItem("ratings")||"[]");
+    ratings.push({user:currentUser, bintang:bintang, komentar:komentar});
+    localStorage.setItem("ratings", JSON.stringify(ratings));
+    alert("Terima kasih! Rating berhasil dikirim.");
+    window.location.href="index.html";
+}
+</script>
+</body>
+</html>        return;
     }
 
     if(!komentar) {

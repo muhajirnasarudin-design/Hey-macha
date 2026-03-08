@@ -3,150 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login / Daftar - Hey Matcha</title>
-
+<title>Login & Daftar - Hey Matcha</title>
 <style>
 body {
     margin:0;
     font-family: Arial, sans-serif;
     background:#0f5f3c;
     color:white;
-    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
 }
 
 .container {
-    max-width: 350px;
-    margin: 60px auto;
     background: rgba(255,255,255,0.1);
-    padding: 30px;
-    border-radius: 15px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    width: 350px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    text-align:center;
 }
 
-h2 {
-    margin-bottom: 20px;
-}
+h2 { margin-bottom: 20px; }
 
 input[type=text], input[type=password], input[type=email] {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: none;
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    border:none;
+    font-size:15px;
 }
 
 .btn {
-    width: 100%;
-    padding: 12px;
-    border-radius: 30px;
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:30px;
     border:none;
-    background:#25D366;
-    color:white;
     font-weight:bold;
     cursor:pointer;
+    font-size:16px;
     transition:0.3s;
-    margin-top: 10px;
 }
 
-.btn:hover {
-    background:#1ebe5a;
-}
+.btn-login { background:#25D366; color:white; }
+.btn-login:hover { background:#1ebe5a; }
 
-a.home {
-    display:block;
-    margin-top:15px;
-    color:#f1fa8c;
-    text-decoration:none;
-}
+.btn-daftar { background:#ffb84d; color:black; }
+.btn-daftar:hover { background:#e6a737; }
 
-.toggle {
-    color:#f1fa8c;
-    cursor:pointer;
-    margin-top:10px;
-    display:block;
-}
+.subtitle { margin:20px 0 10px 0; font-size:16px; color:#f0f0f0; }
+
+a.home { display:block; margin-top:15px; color:#f1fa8c; text-decoration:none; font-weight:bold; }
 </style>
 </head>
-
 <body>
 
-<div class="container" id="loginBox">
-    <h2>Login untuk Rating</h2>
+<div class="container">
+    <h2>Login & Daftar - Hey Matcha</h2>
+
+    <!-- LOGIN -->
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
-    <button class="btn" onclick="login()">Login</button>
-    <span class="toggle" onclick="toggleForm()">Belum punya akun? Daftar</span>
-    <a class="home" href="index.html">🏠 Kembali ke Beranda</a>
-</div>
+    <button class="btn btn-login" onclick="login()">Login</button>
 
-<div class="container" id="registerBox" style="display:none;">
-    <h2>Daftar Akun Baru</h2>
-    <input type="text" id="newUser" placeholder="Username">
-    <input type="email" id="newEmail" placeholder="Email">
-    <input type="password" id="newPass" placeholder="Password">
-    <button class="btn" onclick="register()">Daftar</button>
-    <span class="toggle" onclick="toggleForm()">Sudah punya akun? Login</span>
+    <div class="subtitle">Belum punya akun? Daftar di bawah</div>
+
+    <!-- DAFTAR -->
+    <input type="text" id="newuser" placeholder="Username baru">
+    <input type="email" id="newemail" placeholder="Email">
+    <input type="password" id="newpass" placeholder="Password baru">
+    <button class="btn btn-daftar" onclick="daftar()">Daftar</button>
+
     <a class="home" href="index.html">🏠 Kembali ke Beranda</a>
 </div>
 
 <script>
-function toggleForm(){
-    const loginBox = document.getElementById("loginBox");
-    const registerBox = document.getElementById("registerBox");
-    if(loginBox.style.display === "none"){
-        loginBox.style.display = "block";
-        registerBox.style.display = "none";
-    } else {
-        loginBox.style.display = "none";
-        registerBox.style.display = "block";
-    }
-}
-
-// Fungsi Login
 function login() {
-    const user = document.getElementById("username").value;
-    const pass = document.getElementById("password").value;
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+    if(!user || !pass){ alert("Isi username dan password"); return; }
 
-    if(!user || !pass){
-        alert("Silakan isi Username dan Password");
-        return;
-    }
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    let found = users.find(u => u.username === user && u.password === pass);
 
-    let users = JSON.parse(localStorage.getItem("users") || "{}");
-
-    if(users[user] && users[user].pass === pass){
+    if(found){
+        localStorage.setItem("currentUser", user);
         alert("Login berhasil! Sekarang bisa beri rating.");
         window.location.href = "rating.html";
     } else {
-        alert("Username atau Password salah / belum terdaftar");
+        alert("Username atau Password salah");
     }
 }
 
-// Fungsi Register
-function register(){
-    const user = document.getElementById("newUser").value.trim();
-    const email = document.getElementById("newEmail").value.trim();
-    const pass = document.getElementById("newPass").value.trim();
+function daftar() {
+    const user = document.getElementById("newuser").value.trim();
+    const email = document.getElementById("newemail").value.trim();
+    const pass = document.getElementById("newpass").value.trim();
 
-    if(!user || !email || !pass){
-        alert("Semua kolom wajib diisi");
+    if(!user || !email || !pass){ alert("Isi semua field"); return; }
+
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    if(users.find(u => u.email === email)){
+        alert("Email sudah terdaftar");
         return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users") || "{}");
-
-    // Cek username atau email sudah ada
-    for(let key in users){
-        if(key === user || users[key].email === email){
-            alert("Username atau Email sudah digunakan!");
-            return;
-        }
-    }
-
-    users[user] = { email: email, pass: pass };
+    users.push({username:user, email:email, password:pass});
     localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Daftar berhasil! Silakan login.");
-    toggleForm(); // kembali ke login
+    alert("Pendaftaran berhasil! Silakan login");
 }
 </script>
 

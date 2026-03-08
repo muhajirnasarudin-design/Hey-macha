@@ -5,49 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hey Matcha</title>
 <style>
-body {margin:0; font-family:Arial; color:white; text-align:center;
-background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("11.jpg");
-background-size: cover; background-position: center; background-attachment: fixed;}
-.hero {padding:100px 20px;}
-.hero h1 {font-size:50px; letter-spacing:2px; margin:0;}
-.hero p {font-size:18px; margin:10px 0 20px;}
-
-.btn {display:inline-block; margin:10px; padding:15px 25px; border-radius:30px; text-decoration:none; font-weight:bold; transition:0.3s; cursor:pointer;}
-.btn:hover {transform:scale(1.05);}
-.wa {background:#25D366; color:white;}
-.gofood {background:#e63946; color:white;}
-.menu {background:#f1fa8c; color:black;}
-.rating {background:white; color:black;}
-
-select {padding:12px; border-radius:10px; border:none; margin-top:15px; font-size:16px;}
-
-.area {margin-top:40px; padding-bottom:80px;}
-.area h2 {font-size:32px; margin-bottom:30px;}
-.menu-area {display:flex; justify-content:center; flex-wrap:wrap; gap:25px;}
-.card {background:white; color:black; border-radius:15px; width:200px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.4); transition:0.3s;}
-.card:hover {transform:translateY(-5px);}
-.card img {width:100%; height:140px; object-fit:cover;}
-.card h3 {margin:10px;}
-#ratingsList {max-width:600px; margin:0 auto; text-align:left;}
-#ratingsList div {background:rgba(255,255,255,0.8); color:black; padding:10px; margin-bottom:10px; border-radius:10px;}
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('11.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.hero { padding:80px 20px; }
+.hero h1 { font-size:50px; letter-spacing:2px; margin:0; }
+.hero p { font-size:18px; margin:10px 0 20px; }
+.btn { display:inline-block; margin:10px; padding:15px 25px; border-radius:30px; font-weight:bold; text-decoration:none; cursor:pointer; transition:0.3s;}
+.btn:hover { transform:scale(1.05); }
+.wa { background:#25D366; color:white; }
+.gofood { background:#e63946; color:white; }
+.menu { background:#f1fa8c; color:black; }
+.rating { background:white; color:black; }
+select { padding:12px; border-radius:10px; border:none; margin-top:15px; font-size:16px; }
+.area { margin-top:40px; padding-bottom:80px; }
+.area h2 { font-size:32px; margin-bottom:30px; }
+.menu-area { display:flex; justify-content:center; flex-wrap:wrap; gap:25px; }
+.card { background:white; color:black; border-radius:15px; width:200px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.4); transition:0.3s; }
+.card:hover { transform:translateY(-5px); }
+.card img { width:100%; height:140px; object-fit:cover; }
+.card h3 { margin:10px; }
+/* Rating user */
+.rating-box { background: rgba(255,255,255,0.2); padding:10px; margin:5px auto; border-radius:10px; width:80%; text-align:left;}
 </style>
 </head>
 <body>
 
+<!-- HERO -->
 <div class="hero">
 <h1>HEY MATCHA</h1>
 <p>Best Matcha Premium Powder</p>
+
 <h3>Pilih Cabang Terdekat</h3>
 <select id="cabang">
 <option value="">-- Pilih Cabang --</option>
 <option value="Jakarta" data-wa="+62881024784926">Hey Matcha Jakarta</option>
 <option value="Kemayoran" data-wa="+6288295393050">Hey Matcha Kemayoran</option>
 </select>
+
 <br><br>
 <button class="btn wa" onclick="pesanWA()">Pesan via WhatsApp</button>
 <a class="btn gofood" href="https://gofood.link/yourstore" target="_blank">Pesan via GoFood</a>
 </div>
 
+<!-- MENU FAVORIT -->
 <div class="area">
 <h2>Menu Favorit</h2>
 <div class="menu-area">
@@ -58,38 +65,42 @@ select {padding:12px; border-radius:10px; border:none; margin-top:15px; font-siz
 <div class="card"><img src="22.jpg" alt="Caramelo Matcha"><h3>Caramelo Matcha</h3></div>
 <div class="card"><img src="24.jpg" alt="Cookies Matcha"><h3>Cookies Matcha</h3></div>
 </div>
+
 <br><br>
 <a class="btn menu" href="menu.html">Lihat Menu</a>
 <a class="btn rating" href="login.html">Beri Rating</a>
 </div>
 
+<!-- RATING PELANGGAN -->
 <div class="area">
 <h2>Rating Pelanggan</h2>
-<div id="ratingsList"></div>
+<div id="ratingArea" class="menu-area" style="flex-direction:column; align-items:center;"></div>
 </div>
 
 <script>
-function pesanWA() {
-    const select = document.getElementById("cabang");
-    const cabang = select.value;
-    const wa = select.options[select.selectedIndex].getAttribute("data-wa");
-    if(!cabang){ alert("Silakan pilih cabang terlebih dahulu"); return; }
-    const pesan = "Halo saya ingin pesan di "+cabang;
-    window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(pesan));
+function pesanWA(){
+  const select = document.getElementById("cabang");
+  const cabang = select.value;
+  const wa = select.options[select.selectedIndex].getAttribute("data-wa");
+  if(!cabang){ alert("Silakan pilih cabang terlebih dahulu"); return; }
+  const pesan = "Halo saya ingin pesan di "+cabang;
+  window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(pesan));
 }
 
-// tampilkan rating
-function tampilkanRating() {
-    const ratingsDiv = document.getElementById("ratingsList");
-    const ratings = JSON.parse(localStorage.getItem("ratings") || "[]");
-    if(ratings.length===0){ ratingsDiv.innerHTML="<p>Belum ada rating.</p>"; return; }
-    let html="";
-    ratings.forEach(r=>{
-        html+=`<div><strong>${r.user}</strong> - ${"⭐".repeat(r.bintang)}<br><em>${r.komentar}</em></div>`;
+// Tampilkan rating di index
+function tampilkanRating(){
+    const ratingArea = document.getElementById("ratingArea");
+    const allRatings = JSON.parse(localStorage.getItem("ratings")||"[]");
+    if(allRatings.length===0){ ratingArea.innerHTML="<p>Belum ada rating.</p>"; return; }
+    ratingArea.innerHTML="";
+    allRatings.reverse().forEach(r=>{
+        const div = document.createElement("div");
+        div.className="rating-box";
+        div.innerHTML=`<b>${r.user}</b> memberi <b>${r.rating}/5</b> pada <i>${r.menu}</i><br>${r.komentar}<br><small>${r.tanggal}</small>`;
+        ratingArea.appendChild(div);
     });
-    ratingsDiv.innerHTML=html;
 }
-window.onload=tampilkanRating;
+tampilkanRating();
 </script>
 
 </body>

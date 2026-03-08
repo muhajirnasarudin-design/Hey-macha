@@ -10,32 +10,39 @@ body {
     font-family: Arial, sans-serif;
     background: #0f5f3c;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Kotak Login/Daftar */
+.container {
+    background: rgba(255,255,255,0.1);
+    padding: 40px 30px;
+    border-radius: 20px;
+    width: 350px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     text-align: center;
 }
 
-/* CONTAINER */
-.container {
-    max-width: 350px;
-    margin: 100px auto;
-    background: rgba(255,255,255,0.1);
-    padding: 30px;
-    border-radius: 15px;
-}
-
+/* Judul */
 h2 {
     margin-bottom: 20px;
+    font-size: 26px;
 }
 
-/* INPUT */
+/* Input */
 input[type=text], input[type=password], input[type=email] {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+    padding: 12px 15px;
+    margin: 8px 0;
     border-radius: 10px;
     border: none;
+    font-size: 15px;
 }
 
-/* BUTTON */
+/* Tombol */
 .btn {
     width: 100%;
     padding: 12px;
@@ -46,6 +53,7 @@ input[type=text], input[type=password], input[type=email] {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    font-size: 16px;
     transition: 0.3s;
 }
 
@@ -53,7 +61,14 @@ input[type=text], input[type=password], input[type=email] {
     background: #1ebe5a;
 }
 
-/* LINK BERANDA */
+/* Subtitle daftar */
+.subtitle {
+    margin: 20px 0 10px 0;
+    font-size: 16px;
+    color: #f0f0f0;
+}
+
+/* Link beranda */
 a.home {
     display: block;
     margin-top: 15px;
@@ -66,12 +81,16 @@ a.home {
 <body>
 
 <div class="container">
-    <h2>Login untuk Rating</h2>
+    <h2>Login & Daftar - Hey Matcha</h2>
+
+    <!-- LOGIN -->
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
     <button class="btn" onclick="login()">Login</button>
 
-    <h3>Belum punya akun? Daftar di bawah</h3>
+    <div class="subtitle">Belum punya akun? Daftar di bawah</div>
+
+    <!-- DAFTAR -->
     <input type="text" id="newuser" placeholder="Username baru">
     <input type="email" id="newemail" placeholder="Email">
     <input type="password" id="newpass" placeholder="Password baru">
@@ -84,6 +103,7 @@ a.home {
 function login() {
     const user = document.getElementById("username").value;
     const pass = document.getElementById("password").value;
+
     if(!user || !pass){
         alert("Isi username dan password");
         return;

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Hey Matcha</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#0f5f3c;
+    color:white;
+    text-align:center;
+}
+
+.container {
+    max-width: 350px;
+    margin: 100px auto;
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border:none;
+    background:#25D366;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover {
+    background:#1ebe5a;
+}
+
+a.home {
+    display:block;
+    margin-top:15px;
+    color:#f1fa8c;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Login untuk Rating</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button class="btn" onclick="login()">Login</button>
+    <a class="home" href="index.html">🏠 Kembali ke Beranda</a>
+</div>
+
+<script>
+function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if(!user || !pass) {
+        alert("Silakan isi Username dan Password");
+        return;
+    }
+
+    // Contoh login sederhana tanpa database
+    if(user === "admin" && pass === "1234") {
+        alert("Login berhasil! Sekarang bisa beri rating.");
+        window.location.href = "rating.html"; // nanti buat halaman rating
+    } else {
+        alert("Username atau Password salah");
+    }
+}
+</script>
+
+</body>
+</html>

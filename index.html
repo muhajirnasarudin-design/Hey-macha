@@ -6,16 +6,15 @@
 <title>Hey Matcha</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial;
 color:white;
 text-align:center;
 
+/* BACKGROUND MATCHA */
 background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url("https://images.unsplash.com/photo-1556679343-c7306c1976bc");
-
+url("images/background.jpg"); /* Ganti dengan foto sendiri */
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -32,6 +31,7 @@ letter-spacing:2px;
 
 .hero p{
 font-size:18px;
+margin-bottom:20px;
 }
 
 .btn{
@@ -87,6 +87,7 @@ font-size:32px;
 margin-bottom:30px;
 }
 
+/* MENU CARD */
 .menu-area{
 display:flex;
 justify-content:center;
@@ -104,6 +105,102 @@ box-shadow:0 8px 20px rgba(0,0,0,0.4);
 transition:0.3s;
 }
 
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:140px;
+object-fit:cover;
+}
+
+.card h3{
+margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+<h1>HEY MATCHA</h1>
+<p>Best Matcha Premium Powder</p>
+
+<h3>Pilih Cabang Terdekat</h3>
+
+<select id="cabang">
+<option value="">-- Pilih Cabang --</option>
+<option value="Jakarta" data-wa="+62881024784926">Hey Matcha Jakarta</option>
+<option value="Kemayoran" data-wa="+6288295393050">Hey Matcha Kemayoran</option>
+</select>
+
+<br><br>
+
+<button class="btn wa" onclick="pesanWA()">
+Pesan via WhatsApp
+</button>
+
+<a class="btn gofood" href="https://gofood.link/yourstore" target="_blank">
+Pesan via GoFood
+</a>
+
+</div>
+
+<!-- MENU AREA -->
+<div class="area">
+
+<h2>Menu Favorit</h2>
+
+<div class="menu-area">
+<div class="card">
+<img src="images/matcha-latte.jpg" alt="Matcha Latte">
+<h3>Matcha Latte</h3>
+</div>
+
+<div class="card">
+<img src="images/matcha-icecream.jpg" alt="Matcha Ice Cream">
+<h3>Matcha Ice Cream</h3>
+</div>
+
+<div class="card">
+<img src="images/matcha-dessert.jpg" alt="Matcha Dessert">
+<h3>Matcha Dessert</h3>
+</div>
+
+<div class="card">
+<img src="images/matcha-powder.jpg" alt="Premium Matcha Powder">
+<h3>Premium Matcha Powder</h3>
+</div>
+</div>
+
+<br><br>
+
+<a class="btn menu" href="menu.html">Lihat Menu</a>
+<a class="btn rating" href="login.html">Beri Rating</a>
+
+</div>
+
+<script>
+function pesanWA(){
+    let select = document.getElementById("cabang");
+    let cabang = select.value;
+    let wa = select.options[select.selectedIndex].getAttribute("data-wa");
+
+    if(cabang==""){
+        alert("Silakan pilih cabang terlebih dahulu");
+        return;
+    }
+
+    let pesan = "Halo saya ingin pesan di "+cabang;
+    let url = "https://wa.me/"+wa+"?text="+encodeURIComponent(pesan);
+    window.open(url);
+}
+</script>
+
+</body>
+</html>
 .card:hover{
 transform:translateY(-5px);
 }

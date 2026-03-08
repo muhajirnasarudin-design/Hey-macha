@@ -13,7 +13,6 @@ font-family:Arial;
 color:white;
 text-align:center;
 
-/* BACKGROUND MATCHA */
 background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
 url("https://images.unsplash.com/photo-1556679343-c7306c1976bc");
 
@@ -43,6 +42,7 @@ border-radius:30px;
 text-decoration:none;
 font-weight:bold;
 transition:0.3s;
+cursor:pointer;
 }
 
 .btn:hover{
@@ -69,6 +69,14 @@ background:white;
 color:black;
 }
 
+select{
+padding:12px;
+border-radius:10px;
+border:none;
+margin-top:15px;
+font-size:16px;
+}
+
 .area{
 margin-top:40px;
 padding-bottom:80px;
@@ -78,8 +86,6 @@ padding-bottom:80px;
 font-size:32px;
 margin-bottom:30px;
 }
-
-/* MENU CARD */
 
 .menu-area{
 display:flex;
@@ -122,12 +128,20 @@ margin:10px;
 <h1>HEY MATCHA</h1>
 <p>Best Matcha Premium Powder</p>
 
-<br>
+<h3>Pilih Cabang Terdekat</h3>
 
-<a class="btn wa"
-href="https://wa.me/628000000000">
+<select id="cabang">
+<option value="">-- Pilih Cabang --</option>
+<option value="Hey Matcha Bima">Hey Matcha Bima</option>
+<option value="Hey Matcha Dompu">Hey Matcha Dompu</option>
+<option value="Hey Matcha Sumbawa">Hey Matcha Sumbawa</option>
+</select>
+
+<br><br>
+
+<button class="btn wa" onclick="pesanWA()">
 Pesan via WhatsApp
-</a>
+</button>
 
 <a class="btn gofood"
 href="https://gofood.link/yourstore">
@@ -168,60 +182,36 @@ Pesan via GoFood
 
 <br><br>
 
-<a class="btn menu"
-href="menu.html">
+<a class="btn menu" href="menu.html">
 Lihat Menu
 </a>
 
-<a class="btn rating"
-href="login.html">
+<a class="btn rating" href="login.html">
 Beri Rating
 </a>
 
 </div>
 
-</body>
-</html>href="https://gofood.link/yourstore">
-Pesan via GoFood
-</a>
+<script>
 
-</div>
+function pesanWA(){
 
-<!-- MENU AREA -->
+let cabang=document.getElementById("cabang").value;
 
-<div class="area">
+if(cabang==""){
+alert("Silakan pilih cabang terlebih dahulu");
+return;
+}
 
-<h2>Menu Area</h2>
+let pesan="Halo saya ingin pesan di "+cabang;
 
-<div class="menu-area">
+let url="https://wa.me/628000000000?text="+encodeURIComponent(pesan);
 
-<div class="card">
-🍵 Matcha Drink
-</div>
+window.open(url);
 
-<div class="card">
-🍰 Matcha Dessert
-</div>
+}
 
-<div class="card">
-🌿 Matcha Powder
-</div>
-
-</div>
-
-<br><br>
-
-<a class="btn menu"
-href="menu.html">
-Lihat Menu
-</a>
-
-<a class="btn rating"
-href="login.html">
-Beri Rating
-</a>
-
-</div>
+</script>
 
 </body>
 </html>

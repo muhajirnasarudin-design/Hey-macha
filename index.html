@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,17 +10,24 @@
 body{
 margin:0;
 font-family:Arial;
-background:#0f5f3c;
 color:white;
 text-align:center;
+
+/* BACKGROUND GAMBAR */
+background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1515823662972-da6a2e4d3002");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 }
 
 .hero{
-padding:80px 20px;
+padding:100px 20px;
 }
 
 .hero h1{
-font-size:40px;
+font-size:45px;
 }
 
 .btn{
@@ -53,6 +59,32 @@ background:white;
 color:black;
 }
 
+.area{
+margin-top:40px;
+padding-bottom:80px;
+}
+
+.area h2{
+margin-bottom:20px;
+}
+
+.menu-area{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.card{
+background:white;
+color:black;
+padding:20px;
+border-radius:15px;
+width:160px;
+font-weight:bold;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
 </style>
 </head>
 
@@ -61,7 +93,6 @@ color:black;
 <div class="hero">
 
 <h1>HEY MATCHA</h1>
-
 <p>Best Matcha Premium Powder</p>
 
 <br>
@@ -75,6 +106,30 @@ Pesan via WhatsApp
 href="https://gofood.link/yourstore">
 Pesan via GoFood
 </a>
+
+</div>
+
+<!-- MENU AREA -->
+
+<div class="area">
+
+<h2>Menu Area</h2>
+
+<div class="menu-area">
+
+<div class="card">
+🍵 Matcha Drink
+</div>
+
+<div class="card">
+🍰 Matcha Dessert
+</div>
+
+<div class="card">
+🌿 Matcha Powder
+</div>
+
+</div>
 
 <br><br>
 

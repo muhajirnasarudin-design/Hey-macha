@@ -8,37 +8,45 @@
 body {
     margin:0;
     font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
+    color:white;
+    text-align:center;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('11.jpg');
     background-size: cover;
     background-position: center;
 }
-.hero { padding:80px 20px; }
-.hero h1 { font-size:50px; letter-spacing:2px; margin:0; }
-.hero p { font-size:18px; margin:10px 0 20px; }
-.btn { display:inline-block; margin:10px; padding:15px 25px; border-radius:30px; font-weight:bold; text-decoration:none; cursor:pointer; transition:0.3s;}
-.btn:hover { transform:scale(1.05); }
-.wa { background:#25D366; color:white; }
-.gofood { background:#e63946; color:white; }
-.menu { background:#f1fa8c; color:black; }
-.rating { background:white; color:black; }
-select { padding:12px; border-radius:10px; border:none; margin-top:15px; font-size:16px; }
-.area { margin-top:40px; padding-bottom:80px; }
-.area h2 { font-size:32px; margin-bottom:30px; }
-.menu-area { display:flex; justify-content:center; flex-wrap:wrap; gap:25px; }
-.card { background:white; color:black; border-radius:15px; width:200px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.4); transition:0.3s; }
-.card:hover { transform:translateY(-5px); }
-.card img { width:100%; height:140px; object-fit:cover; }
-.card h3 { margin:10px; }
-/* Rating user */
-.rating-box { background: rgba(255,255,255,0.2); padding:10px; margin:5px auto; border-radius:10px; width:80%; text-align:left;}
+
+.container {
+    max-width:400px;
+    margin:30px auto;
+    background: rgba(255,255,255,0.1);
+    padding:20px 30px;
+    border-radius:15px;
+}
+
+h1,h2,h3 {margin:10px 0;}
+input,select,textarea{
+    width:100%; padding:12px; margin:8px 0; border-radius:10px; border:none; font-size:15px;
+}
+textarea{resize:none;}
+.btn{
+    width:100%; padding:12px; border-radius:30px; border:none; font-weight:bold; cursor:pointer; transition:0.3s; margin:5px 0;
+}
+.btn:hover{opacity:0.9;}
+.wa{background:#25D366; color:white;}
+.gofood{background:#e63946; color:white;}
+.menu{background:#f1fa8c; color:black;}
+.rating{background:white; color:black;}
+a.home{display:block; margin-top:10px; color:#f1fa8c; text-decoration:none; font-weight:bold;}
+.menu-area{display:flex; justify-content:center; flex-wrap:wrap; gap:15px;}
+.card{background:white; color:black; border-radius:15px; width:150px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.3);}
+.card img{width:100%; height:100px; object-fit:cover;}
+.card h3{margin:5px;}
+.rating-box{background: rgba(255,255,255,0.2); padding:8px; margin:5px auto; border-radius:10px; width:90%; text-align:left;}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
+<div class="container">
 <h1>HEY MATCHA</h1>
 <p>Best Matcha Premium Powder</p>
 
@@ -48,59 +56,141 @@ select { padding:12px; border-radius:10px; border:none; margin-top:15px; font-si
 <option value="Jakarta" data-wa="+62881024784926">Hey Matcha Jakarta</option>
 <option value="Kemayoran" data-wa="+6288295393050">Hey Matcha Kemayoran</option>
 </select>
-
-<br><br>
 <button class="btn wa" onclick="pesanWA()">Pesan via WhatsApp</button>
 <a class="btn gofood" href="https://gofood.link/yourstore" target="_blank">Pesan via GoFood</a>
 </div>
 
 <!-- MENU FAVORIT -->
-<div class="area">
+<div class="container">
 <h2>Menu Favorit</h2>
 <div class="menu-area">
-<div class="card"><img src="19.jpg" alt="Yogurt Matcha"><h3>Yogurt Matcha</h3></div>
-<div class="card"><img src="20.jpg" alt="Lemon Matcha"><h3>Lemon Matcha</h3></div>
-<div class="card"><img src="21.jpg" alt="Coconut Matcha"><h3>Coconut Matcha</h3></div>
-<div class="card"><img src="23.jpg" alt="Signature Matcha"><h3>Signature Matcha</h3></div>
-<div class="card"><img src="22.jpg" alt="Caramelo Matcha"><h3>Caramelo Matcha</h3></div>
-<div class="card"><img src="24.jpg" alt="Cookies Matcha"><h3>Cookies Matcha</h3></div>
+<div class="card"><img src="19.jpg"><h3>Yogurt Matcha</h3></div>
+<div class="card"><img src="20.jpg"><h3>Lemon Matcha</h3></div>
+<div class="card"><img src="21.jpg"><h3>Coconut Matcha</h3></div>
+<div class="card"><img src="23.jpg"><h3>Signature Matcha</h3></div>
+<div class="card"><img src="22.jpg"><h3>Caramelo Matcha</h3></div>
+<div class="card"><img src="24.jpg"><h3>Cookies Matcha</h3></div>
+</div>
 </div>
 
-<br><br>
-<a class="btn menu" href="menu.html">Lihat Menu</a>
-<a class="btn rating" href="login.html">Beri Rating</a>
+<!-- LOGIN & DAFTAR -->
+<div class="container" id="loginBox">
+<h2>Login & Daftar untuk Rating</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button class="btn" onclick="login()">Login</button>
+<div class="subtitle" style="color:#f1fa8c;">Belum punya akun? Daftar di bawah</div>
+<input type="text" id="newuser" placeholder="Username baru">
+<input type="email" id="newemail" placeholder="Email">
+<input type="password" id="newpass" placeholder="Password baru">
+<button class="btn" onclick="daftar()">Daftar</button>
+<a class="home" href="#">🏠 Kembali ke Beranda</a>
 </div>
 
-<!-- RATING PELANGGAN -->
-<div class="area">
+<!-- BERIKAN RATING -->
+<div class="container" id="ratingBox" style="display:none;">
+<h2>Beri Rating Menu</h2>
+<select id="menu">
+<option value="">-- Pilih Menu --</option>
+<option value="Yogurt Matcha">Yogurt Matcha</option>
+<option value="Lemon Matcha">Lemon Matcha</option>
+<option value="Coconut Matcha">Coconut Matcha</option>
+<option value="Signature Matcha">Signature Matcha</option>
+<option value="Caramelo Matcha">Caramelo Matcha</option>
+<option value="Cookies Matcha">Cookies Matcha</option>
+</select>
+<input type="number" id="rating" placeholder="Rating (1-5)" min="1" max="5">
+<textarea id="komentar" placeholder="Tulis komentar"></textarea>
+<button class="btn" onclick="beriRating()">Kirim Rating</button>
+<button class="btn" onclick="logout()" style="background:#f1fa8c;color:black;">Logout</button>
+</div>
+
+<!-- TAMPIL RATING -->
+<div class="container">
 <h2>Rating Pelanggan</h2>
-<div id="ratingArea" class="menu-area" style="flex-direction:column; align-items:center;"></div>
+<div id="ratingArea" style="display:flex; flex-direction:column; align-items:center;"></div>
 </div>
 
 <script>
 function pesanWA(){
-  const select = document.getElementById("cabang");
-  const cabang = select.value;
-  const wa = select.options[select.selectedIndex].getAttribute("data-wa");
-  if(!cabang){ alert("Silakan pilih cabang terlebih dahulu"); return; }
-  const pesan = "Halo saya ingin pesan di "+cabang;
-  window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(pesan));
+  const select=document.getElementById("cabang");
+  const cabang=select.value;
+  const wa=select.options[select.selectedIndex].getAttribute("data-wa");
+  if(!cabang){ alert("Pilih cabang dulu"); return; }
+  window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Halo saya ingin pesan di "+cabang));
 }
 
-// Tampilkan rating di index
+// LOGIN & DAFTAR
+function login(){
+  const user=document.getElementById("username").value;
+  const pass=document.getElementById("password").value;
+  if(!user||!pass){ alert("Isi username dan password"); return; }
+  let users=JSON.parse(localStorage.getItem("users")||"[]");
+  let found=users.find(u=>u.username===user && u.password===pass);
+  if(found){
+    localStorage.setItem("currentUser", user);
+    alert("Login berhasil!");
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("ratingBox").style.display="block";
+  } else { alert("Username atau password salah"); }
+}
+
+function daftar(){
+  const user=document.getElementById("newuser").value.trim();
+  const email=document.getElementById("newemail").value.trim();
+  const pass=document.getElementById("newpass").value.trim();
+  if(!user||!email||!pass){ alert("Isi semua field"); return; }
+  let users=JSON.parse(localStorage.getItem("users")||"[]");
+  if(users.find(u=>u.email===email)){ alert("Email sudah terdaftar"); return; }
+  users.push({username:user,email:email,password:pass});
+  localStorage.setItem("users",JSON.stringify(users));
+  alert("Pendaftaran berhasil! Silakan login");
+}
+
+// BERIKAN RATING
+function beriRating(){
+  const currentUser=localStorage.getItem("currentUser");
+  if(!currentUser){ alert("Silakan login!"); return; }
+  const menu=document.getElementById("menu").value;
+  const rating=parseInt(document.getElementById("rating").value);
+  const komentar=document.getElementById("komentar").value.trim();
+  if(!menu||!rating||!komentar){ alert("Isi semua field"); return; }
+  let allRatings=JSON.parse(localStorage.getItem("ratings")||"[]");
+  allRatings.push({user:currentUser,menu:menu,rating:rating,komentar:komentar,tanggal:new Date().toLocaleString()});
+  localStorage.setItem("ratings",JSON.stringify(allRatings));
+  alert("Rating berhasil dikirim!");
+  document.getElementById("komentar").value="";
+  document.getElementById("rating").value="";
+  document.getElementById("menu").value="";
+  tampilkanRating();
+}
+
+function logout(){
+  localStorage.removeItem("currentUser");
+  document.getElementById("ratingBox").style.display="none";
+  document.getElementById("loginBox").style.display="block";
+}
+
+// Tampilkan rating
 function tampilkanRating(){
-    const ratingArea = document.getElementById("ratingArea");
-    const allRatings = JSON.parse(localStorage.getItem("ratings")||"[]");
-    if(allRatings.length===0){ ratingArea.innerHTML="<p>Belum ada rating.</p>"; return; }
-    ratingArea.innerHTML="";
-    allRatings.reverse().forEach(r=>{
-        const div = document.createElement("div");
-        div.className="rating-box";
-        div.innerHTML=`<b>${r.user}</b> memberi <b>${r.rating}/5</b> pada <i>${r.menu}</i><br>${r.komentar}<br><small>${r.tanggal}</small>`;
-        ratingArea.appendChild(div);
-    });
+  const ratingArea=document.getElementById("ratingArea");
+  const allRatings=JSON.parse(localStorage.getItem("ratings")||"[]");
+  if(allRatings.length===0){ ratingArea.innerHTML="<p>Belum ada rating.</p>"; return; }
+  ratingArea.innerHTML="";
+  allRatings.reverse().forEach(r=>{
+    const div=document.createElement("div");
+    div.className="rating-box";
+    div.innerHTML=`<b>${r.user}</b> memberi <b>${r.rating}/5</b> pada <i>${r.menu}</i><br>${r.komentar}<br><small>${r.tanggal}</small>`;
+    ratingArea.appendChild(div);
+  });
 }
 tampilkanRating();
+
+// Cek login otomatis
+if(localStorage.getItem("currentUser")){
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("ratingBox").style.display="block";
+}
 </script>
 
 </body>

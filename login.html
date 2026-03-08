@@ -5,56 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login / Daftar - Hey Matcha</title>
 <style>
-/* GLOBAL STYLING */
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     background: #0f5f3c;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    text-align: center;
 }
 
-/* CONTAINER UTAMA */
+/* CONTAINER */
 .container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 40px 30px;
-    border-radius: 20px;
-    width: 350px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    max-width: 350px;
+    margin: 100px auto;
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 15px;
 }
 
-/* JUDUL */
-.container h2 {
-    margin-bottom: 25px;
-    font-size: 26px;
+h2 {
+    margin-bottom: 20px;
 }
 
 /* INPUT */
-input {
+input[type=text], input[type=password], input[type=email] {
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px;
     margin: 10px 0;
     border-radius: 10px;
     border: none;
-    font-size: 15px;
 }
 
 /* BUTTON */
 .btn {
     width: 100%;
     padding: 12px;
+    margin-top: 10px;
     border-radius: 30px;
     border: none;
     background: #25D366;
     color: white;
     font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
     transition: 0.3s;
-    margin-top: 10px;
 }
 
 .btn:hover {
@@ -68,34 +60,18 @@ a.home {
     color: #f1fa8c;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
-}
-
-a.home:hover {
-    color: #fff;
-}
-
-/* SUBTITLE */
-.subtitle {
-    margin: 25px 0 15px 0;
-    font-size: 16px;
-    font-weight: normal;
-    color: #f0f0f0;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- LOGIN -->
     <h2>Login untuk Rating</h2>
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
     <button class="btn" onclick="login()">Login</button>
 
-    <div class="subtitle">Belum punya akun? Daftar di bawah</div>
-
-    <!-- DAFTAR -->
+    <h3>Belum punya akun? Daftar di bawah</h3>
     <input type="text" id="newuser" placeholder="Username baru">
     <input type="email" id="newemail" placeholder="Email">
     <input type="password" id="newpass" placeholder="Password baru">
@@ -108,7 +84,6 @@ a.home:hover {
 function login() {
     const user = document.getElementById("username").value;
     const pass = document.getElementById("password").value;
-
     if(!user || !pass){
         alert("Isi username dan password");
         return;

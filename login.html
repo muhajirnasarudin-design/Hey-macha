@@ -5,56 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login / Daftar - Hey Matcha</title>
 <style>
-body {margin:0; font-family:Arial; background:#0f5f3c; color:white; text-align:center;}
-.container {max-width:350px; margin:100px auto; background:rgba(255,255,255,0.1); padding:30px; border-radius:15px;}
-h2 {margin-bottom:20px;}
-input {width:100%; padding:12px; margin:10px 0; border-radius:10px; border:none;}
-.btn {width:100%; padding:12px; border-radius:30px; border:none; background:#25D366; color:white; font-weight:bold; cursor:pointer; transition:0.3s;}
-.btn:hover {background:#1ebe5a;}
-a.home {display:block; margin-top:15px; color:#f1fa8c; text-decoration:none;}
+/* GLOBAL STYLING */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f5f3c;
+    color: white;
+    text-align: center;
+}
+
+/* CONTAINER LOGIN/DAFTAR */
+.container {
+    max-width: 350px;
+    margin: 100px auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    background: #25D366;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #1ebe5a;
+}
+
+a.home {
+    display: block;
+    margin-top: 15px;
+    color: #f1fa8c;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
+
 <div class="container">
-<h2>Login untuk Rating</h2>
-<input type="text" id="username" placeholder="Username">
-<input type="password" id="password" placeholder="Password">
-<button class="btn" onclick="login()">Login</button>
-<h3>Belum punya akun? Daftar di bawah</h3>
-<input type="text" id="newuser" placeholder="Username baru">
-<input type="email" id="newemail" placeholder="Email">
-<input type="password" id="newpass" placeholder="Password baru">
-<button class="btn" onclick="daftar()">Daftar</button>
-<a class="home" href="index.html">🏠 Kembali ke Beranda</a>
+    <h2>Login untuk Rating</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button class="btn" onclick="login()">Login</button>
+
+    <h3>Belum punya akun? Daftar di bawah</h3>
+    <input type="text" id="newuser" placeholder="Username baru">
+    <input type="email" id="newemail" placeholder="Email">
+    <input type="password" id="newpass" placeholder="Password baru">
+    <button class="btn" onclick="daftar()">Daftar</button>
+
+    <a class="home" href="index.html">🏠 Kembali ke Beranda</a>
 </div>
 
 <script>
 function login() {
-    const user=document.getElementById("username").value;
-    const pass=document.getElementById("password").value;
-    if(!user||!pass){ alert("Isi username dan password"); return; }
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
 
-    let users=JSON.parse(localStorage.getItem("users")||"[]");
-    let found=users.find(u=>u.username===user && u.password===pass);
+    if(!user || !pass){
+        alert("Isi username dan password");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    let found = users.find(u => u.username === user && u.password === pass);
+
     if(found){
         localStorage.setItem("currentUser", user);
-        window.location.href="rating.html";
-    } else { alert("Username atau Password salah"); }
+        window.location.href = "rating.html";
+    } else {
+        alert("Username atau Password salah");
+    }
 }
 
 function daftar() {
-    const user=document.getElementById("newuser").value.trim();
-    const email=document.getElementById("newemail").value.trim();
-    const pass=document.getElementById("newpass").value.trim();
-    if(!user||!email||!pass){ alert("Isi semua field"); return; }
+    const user = document.getElementById("newuser").value.trim();
+    const email = document.getElementById("newemail").value.trim();
+    const pass = document.getElementById("newpass").value.trim();
 
-    let users=JSON.parse(localStorage.getItem("users")||"[]");
-    if(users.find(u=>u.email===email)){ alert("Email sudah terdaftar"); return; }
+    if(!user || !email || !pass){
+        alert("Isi semua field");
+        return;
+    }
 
-    users.push({username:user, email:email, password:pass});
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    if(users.find(u => u.email === email)){
+        alert("Email sudah terdaftar");
+        return;
+    }
+
+    users.push({username: user, email: email, password: pass});
     localStorage.setItem("users", JSON.stringify(users));
     alert("Pendaftaran berhasil! Silakan login");
 }
 </script>
+
 </body>
 </html>

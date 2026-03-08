@@ -119,6 +119,20 @@ select {
 .card h3 {
     margin: 10px;
 }
+
+/* RATINGS */
+#ratingsList {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+#ratingsList div {
+    background: rgba(255,255,255,0.8);
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
 </style>
 </head>
 
@@ -145,33 +159,27 @@ select {
 <!-- MENU AREA -->
 <div class="area">
     <h2>Menu Favorit</h2>
-
     <div class="menu-area">
         <div class="card">
             <img src="19.jpg" alt="Yogurt Matcha">
             <h3>Yogurt Matcha</h3>
         </div>
-
         <div class="card">
             <img src="20.jpg" alt="Lemon Matcha">
             <h3>Lemon Matcha</h3>
         </div>
-
         <div class="card">
             <img src="21.jpg" alt="Coconut Matcha">
             <h3>Coconut Matcha</h3>
         </div>
-
         <div class="card">
             <img src="23.jpg" alt="Signature Matcha">
             <h3>Signature Matcha</h3>
         </div>
-
         <div class="card">
             <img src="22.jpg" alt="Caramelo Matcha">
             <h3>Caramelo Matcha</h3>
         </div>
-
         <div class="card">
             <img src="24.jpg" alt="Cookies Matcha">
             <h3>Cookies Matcha</h3>
@@ -184,7 +192,15 @@ select {
     <a class="btn rating" href="login.html">Beri Rating</a>
 </div>
 
-<!-- SCRIPT WHATSAPP -->
+<!-- RATINGS -->
+<div class="area">
+    <h2>Rating Pelanggan</h2>
+    <div id="ratingsList">
+        <!-- Rating user akan tampil di sini -->
+    </div>
+</div>
+
+<!-- SCRIPT WHATSAPP & RATING -->
 <script>
 function pesanWA() {
     const select = document.getElementById("cabang");
@@ -200,6 +216,32 @@ function pesanWA() {
     const url = "https://wa.me/" + wa + "?text=" + encodeURIComponent(pesan);
     window.open(url);
 }
+
+// Fungsi menampilkan rating dari localStorage
+function tampilkanRating() {
+    const ratingsDiv = document.getElementById("ratingsList");
+    const ratings = JSON.parse(localStorage.getItem("ratings") || "[]");
+
+    if(ratings.length === 0){
+        ratingsDiv.innerHTML = "<p>Belum ada rating.</p>";
+        return;
+    }
+
+    let html = "";
+    ratings.forEach(r => {
+        html += `
+            <div>
+                <strong>${r.user}</strong> - ${"⭐".repeat(r.bintang)}<br>
+                <em>${r.komentar}</em>
+            </div>
+        `;
+    });
+
+    ratingsDiv.innerHTML = html;
+}
+
+// Panggil saat halaman load
+window.onload = tampilkanRating;
 </script>
 
 </body>

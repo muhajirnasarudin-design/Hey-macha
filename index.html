@@ -6,195 +6,188 @@
 <title>Hey Matcha</title>
 
 <style>
-body{
-margin:0; 
-font-family:Arial;
-color:white;
-text-align:center;
-
-/* BACKGROUND MATCHA */
-background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url("bg.png"); /* Ganti dengan foto sendiri */
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+/* GLOBAL STYLING */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("bg.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-.hero{
-padding:100px 20px;
+.hero {
+    padding: 100px 20px;
 }
 
-.hero h1{
-font-size:50px;
-letter-spacing:2px;
+.hero h1 {
+    font-size: 50px;
+    letter-spacing: 2px;
+    margin: 0;
 }
 
-.hero p{
-font-size:18px;
-margin-bottom:20px;
+.hero p {
+    font-size: 18px;
+    margin: 10px 0 20px;
 }
 
-.btn{
-display:inline-block;
-margin:10px;
-padding:15px 25px;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
-cursor:pointer;
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
-.btn:hover{
-transform:scale(1.05);
+.btn:hover {
+    transform: scale(1.05);
 }
 
-.wa{
-background:#25D366;
-color:white;
+.wa {
+    background: #25D366;
+    color: white;
 }
 
-.gofood{
-background:#e63946;
-color:white;
+.gofood {
+    background: #e63946;
+    color: white;
 }
 
-.menu{
-background:#f1fa8c;
-color:black;
+.menu {
+    background: #f1fa8c;
+    color: black;
 }
 
-.rating{
-background:white;
-color:black;
+.rating {
+    background: white;
+    color: black;
 }
 
-select{
-padding:12px;
-border-radius:10px;
-border:none;
-margin-top:15px;
-font-size:16px;
+/* SELECT */
+select {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+    font-size: 16px;
 }
 
-.area{
-margin-top:40px;
-padding-bottom:80px;
+/* MENU AREA */
+.area {
+    margin-top: 40px;
+    padding-bottom: 80px;
 }
 
-.area h2{
-font-size:32px;
-margin-bottom:30px;
+.area h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
-/* MENU CARD */
-.menu-area{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:25px;
+.menu-area {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
 }
 
-.card{
-background:white;
-color:black;
-border-radius:15px;
-width:200px;
-overflow:hidden;
-box-shadow:0 8px 20px rgba(0,0,0,0.4);
-transition:0.3s;
+.card {
+    background: white;
+    color: black;
+    border-radius: 15px;
+    width: 200px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transition: 0.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
+.card:hover {
+    transform: translateY(-5px);
 }
 
-.card img{
-width:100%;
-height:140px;
-object-fit:cover;
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
 }
 
-.card h3{
-margin:10px;
+.card h3 {
+    margin: 10px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HERO SECTION -->
 <div class="hero">
+    <h1>HEY MATCHA</h1>
+    <p>Best Matcha Premium Powder</p>
 
-<h1>HEY MATCHA</h1>
-<p>Best Matcha Premium Powder</p>
+    <h3>Pilih Cabang Terdekat</h3>
+    <select id="cabang">
+        <option value="">-- Pilih Cabang --</option>
+        <option value="Jakarta" data-wa="+62881024784926">Hey Matcha Jakarta</option>
+        <option value="Kemayoran" data-wa="+6288295393050">Hey Matcha Kemayoran</option>
+    </select>
 
-<h3>Pilih Cabang Terdekat</h3>
+    <br><br>
 
-<select id="cabang">
-<option value="">-- Pilih Cabang --</option>
-<option value="Jakarta" data-wa="+62881024784926">Hey Matcha Jakarta</option>
-<option value="Kemayoran" data-wa="+6288295393050">Hey Matcha Kemayoran</option>
-</select>
-
-<br><br>
-
-<button class="btn wa" onclick="pesanWA()">
-Pesan via WhatsApp
-</button>
-
-<a class="btn gofood" href="https://gofood.link/yourstore" target="_blank">
-Pesan via GoFood
-</a>
-
+    <button class="btn wa" onclick="pesanWA()">Pesan via WhatsApp</button>
+    <a class="btn gofood" href="https://gofood.link/yourstore" target="_blank">Pesan via GoFood</a>
 </div>
 
 <!-- MENU AREA -->
 <div class="area">
+    <h2>Menu Favorit</h2>
 
-<h2>Menu Favorit</h2>
+    <div class="menu-area">
+        <div class="card">
+            <img src="1.png" alt="Matcha Latte">
+            <h3>Matcha Latte</h3>
+        </div>
 
-<div class="menu-area">
-<div class="card">
-<img src="1.png" alt="Matcha Latte">
-<h3>Matcha Latte</h3>
+        <div class="card">
+            <img src="2.png" alt="Matcha Ice Cream">
+            <h3>Matcha Ice Cream</h3>
+        </div>
+
+        <div class="card">
+            <img src="4.png" alt="Matcha Dessert">
+            <h3>Matcha Dessert</h3>
+        </div>
+
+        <div class="card">
+            <img src="5.png" alt="Premium Matcha Powder">
+            <h3>Premium Matcha Powder</h3>
+        </div>
+    </div>
+
+    <br><br>
+
+    <a class="btn menu" href="menu.html">Lihat Menu</a>
+    <a class="btn rating" href="login.html">Beri Rating</a>
 </div>
 
-<div class="card">
-<img src="2.png" alt="Matcha Ice Cream">
-<h3>Matcha Ice Cream</h3>
-</div>
-
-<div class="card">
-<img src="4.png" alt="Matcha Dessert">
-<h3>Matcha Dessert</h3>
-</div>
-
-<div class="card">
-<img src="5.png" alt="Premium Matcha Powder">
-<h3>Premium Matcha Powder</h3>
-</div>
-</div>
-
-<br><br>
-
-<a class="btn menu" href="menu.html">Lihat Menu</a>
-<a class="btn rating" href="login.html">Beri Rating</a>
-
-</div>
-
+<!-- SCRIPT WHATSAPP -->
 <script>
-function pesanWA(){
-    let select = document.getElementById("cabang");
-    let cabang = select.value;
-    let wa = select.options[select.selectedIndex].getAttribute("data-wa");
+function pesanWA() {
+    const select = document.getElementById("cabang");
+    const cabang = select.value;
+    const wa = select.options[select.selectedIndex].getAttribute("data-wa");
 
-    if(cabang==""){
+    if (!cabang) {
         alert("Silakan pilih cabang terlebih dahulu");
         return;
     }
 
-    let pesan = "Halo saya ingin pesan di "+cabang;
-    let url = "https://wa.me/"+wa+"?text="+encodeURIComponent(pesan);
+    const pesan = "Halo saya ingin pesan di " + cabang;
+    const url = "https://wa.me/" + wa + "?text=" + encodeURIComponent(pesan);
     window.open(url);
 }
 </script>

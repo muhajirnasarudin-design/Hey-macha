@@ -5,111 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beri Rating - Hey Matcha</title>
 <style>
-body {
-    margin:0;
-    font-family:Arial;
-    background:#0f5f3c;
-    color:white;
-    text-align:center;
-}
-
-.container {
-    max-width:400px;
-    margin:80px auto;
-    background: rgba(255,255,255,0.1);
-    padding:30px;
-    border-radius:15px;
-}
-
-h2 { margin-bottom:20px; }
-textarea {
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:none;
-    margin-bottom:10px;
-    resize:none;
-}
-select, input[type=number] {
-    padding:12px;
-    width:100%;
-    margin:8px 0;
-    border-radius:10px;
-    border:none;
-    font-size:15px;
-}
-
-.btn {
-    width:100%;
-    padding:12px;
-    border-radius:30px;
-    border:none;
-    background:#25D366;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:16px;
-    transition:0.3s;
-}
-.btn:hover { background:#1ebe5a; }
-
-a.home { display:block; margin-top:15px; color:#f1fa8c; text-decoration:none; font-weight:bold; }
+body {margin:0;font-family:Arial;color:white;text-align:center;background:#0f5f3c;}
+.container {max-width:400px;margin:80px auto;background:rgba(255,255,255,0.1);padding:30px;border-radius:15px;}
+h2 {margin-bottom:20px;}
+select,input[type=number],textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none;font-size:15px;}
+textarea{resize:none;margin-bottom:10px;}
+.btn {width:100%;padding:12px;border-radius:30px;border:none;background:#25D366;color:white;font-weight:bold;cursor:pointer;font-size:16px;transition:0.3s;}
+.btn:hover{background:#1ebe5a;}
+a.home{display:block;margin-top:15px;color:#f1fa8c;text-decoration:none;font-weight:bold;}
 </style>
 </head>
 <body>
-
 <div class="container">
 <h2>Beri Rating Menu</h2>
-
 <select id="menu">
-    <option value="">-- Pilih Menu --</option>
-    <option value="Yogurt Matcha">Yogurt Matcha</option>
-    <option value="Lemon Matcha">Lemon Matcha</option>
-    <option value="Coconut Matcha">Coconut Matcha</option>
-    <option value="Signature Matcha">Signature Matcha</option>
-    <option value="Caramelo Matcha">Caramelo Matcha</option>
-    <option value="Cookies Matcha">Cookies Matcha</option>
+<option value="">-- Pilih Menu --</option>
+<option value="Yogurt Matcha">Yogurt Matcha</option>
+<option value="Lemon Matcha">Lemon Matcha</option>
+<option value="Coconut Matcha">Coconut Matcha</option>
+<option value="Signature Matcha">Signature Matcha</option>
+<option value="Caramelo Matcha">Caramelo Matcha</option>
+<option value="Cookies Matcha">Cookies Matcha</option>
 </select>
-
 <input type="number" id="rating" placeholder="Rating (1-5)" min="1" max="5">
 <textarea id="komentar" placeholder="Tulis komentar"></textarea>
 <button class="btn" onclick="beriRating()">Kirim Rating</button>
-
 <a class="home" href="index.html">🏠 Kembali ke Beranda</a>
 </div>
 
 <script>
-const currentUser = localStorage.getItem("currentUser");
-if(!currentUser){
-    alert("Silakan login terlebih dahulu!");
-    window.location.href="login.html";
-}
+const currentUser=localStorage.getItem("currentUser");
+if(!currentUser){ alert("Silakan login!"); window.location.href="login.html"; }
 
 function beriRating(){
-    const menu = document.getElementById("menu").value;
-    const rating = parseInt(document.getElementById("rating").value);
-    const komentar = document.getElementById("komentar").value.trim();
-
-    if(!menu || !rating || !komentar){
-        alert("Isi semua field");
-        return;
-    }
-
-    let allRatings = JSON.parse(localStorage.getItem("ratings") || "[]");
-
-    allRatings.push({
-        user: currentUser,
-        menu: menu,
-        rating: rating,
-        komentar: komentar,
-        tanggal: new Date().toLocaleString()
-    });
-
-    localStorage.setItem("ratings", JSON.stringify(allRatings));
-    alert("Terima kasih, rating Anda berhasil dikirim!");
-    window.location.href="index.html"; // Kembali ke beranda
+    const menu=document.getElementById("menu").value;
+    const rating=parseInt(document.getElementById("rating").value);
+    const komentar=document.getElementById("komentar").value.trim();
+    if(!menu||!rating||!komentar){ alert("Isi semua field"); return; }
+    let allRatings=JSON.parse(localStorage.getItem("ratings")||"[]");
+    allRatings.push({user:currentUser,menu:menu,rating:rating,komentar:komentar,tanggal:new Date().toLocaleString()});
+    localStorage.setItem("ratings",JSON.stringify(allRatings));
+    alert("Rating berhasil dikirim!");
+    window.location.href="index.html";
 }
 </script>
-
 </body>
 </html>
